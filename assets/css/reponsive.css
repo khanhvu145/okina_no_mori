@@ -1,0 +1,217 @@
+@media screen and (min-width: 1921px) {
+    .relationship_line {
+        font-size: .83333vw;
+    }
+}
+
+@media screen and (min-width: 1503px) {
+    .u-section {
+        max-width: calc(var(--section-width) * 1.1em / 16);
+    }
+}
+
+@media screen and (max-width: 1386px) {
+    .u-section {
+        max-width: calc(var(--section-width) * 1em / 16);
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    :root {
+        --header-ratio: 0.9;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    :root {
+        --fs: 90%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    :root {
+        --fs: 100%;
+        --padding-bottom-session: 700 * 0.9;
+        --header-ratio: 1;
+    }
+    .u-section {
+        width: 86.66667%;
+    }
+    .app-header.app-header-scroll .header_main {
+        height: 96px;
+    }
+    .header_nav_list {
+        display: none;
+    }
+    .header_navbar-logo-link svg {
+        width: 350px;
+    }
+    .header_nav_button {
+        height: 60px;
+        width: 60px;
+        font-size: 18px;
+    }
+    .main_about_content_title {
+        position: static;
+    }
+    .main_about_content {
+        display: block;
+        padding: 0 var(--padding-content);
+    }
+    .main_about_logo svg {
+        width: 100%;
+    }
+    .main_about_content_body-text {
+        margin-top: 0;
+    }
+    .main_about_content_body-text p .br {
+        display: none;
+    }
+    .section_title {
+        font-size: calc(80 * 1em / 16);
+    }
+    .whatwedo_line {
+        bottom: 12.5em;
+    }
+    .whatwedo_title {
+        --title-top: -280;
+        margin-bottom: calc(var(--title-top) * 1em / 80);
+        top: calc(var(--title-top) * 1em / 80);
+    }
+    .whatwedo_body {
+        height: auto;
+        margin-top: calc(60 * 1em / 16);
+    }
+    .whatwedo_block {
+        position: static;
+    }
+    .whatwedo_block_section {
+        align-items: flex-start;
+        flex-direction: column-reverse;
+        height: auto;
+        opacity: 0;
+        position: static;
+        visibility: hidden;
+    }
+    .whatwedo_block_section:not(:first-of-type) {
+        --mt: 240;
+    }
+    .whatwedo_block_section_body {
+        padding-top: 0;
+    }
+    .whatwedo_block_section_title, 
+    .whatwedo_block_section_link, 
+    .whatwedo_block_section_desc {
+        opacity: 1;
+        transform: translateY(0);
+        transition: none;
+        visibility: visible;
+    }
+    .whatwedo_block_section_title {
+        font-size: calc(70em * var(--sp-ratio) / 16);
+    }
+    .whatwedo_block_section_imgBG {
+        height: 65.33333vw;
+        margin-bottom: 2.5em;
+        margin-left: -7.69231%;
+        width: 115.38462%;
+    }
+    .whatwedo_img {
+        display: none;
+    }
+    .whatwedo_pagenation {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    :root {
+        --padding-left-right-session: 20px;
+        --padding-content: 20px;
+    }
+    .app-header {
+        padding: 0 8px;
+    }
+    .relationship_line {
+        top: -15.625em;
+        font-size: 0.8em;
+    }
+    .section_title {
+        font-size: calc(65 * 1em / 16);
+    }
+    .whatwedo_title {
+        --title-top: -280 * 0.8;
+        margin-bottom: calc(var(--title-top) * 1em / 65);
+        top: calc(var(--title-top) * 1em / 65);
+    }
+}
+
+@media screen and (max-width: 640px) {
+    :root {
+        --padding-left-right-session: 16px;
+        --padding-content: 8px;
+    }
+    .app-header {
+        padding: 0 4px;
+    }
+    .header_navbar-logo-link svg {
+        width: 288px;
+    }
+    .main_slider_title_item {
+        font-size: 2.5rem;
+        letter-spacing: 8px;
+    }
+    .relationship_line {
+        top: -12.5em;
+        font-size: 0.7em;
+    }
+    .whatwedo_title {
+        --title-top: -280 * 0.7;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    :root {
+        --fs: 90%;
+        --padding-top-session: 165 * 0.6;
+    }
+    .app-header.app-header-scroll .header_main {
+        height: 72px;
+    }
+    .header_navbar-logo-link svg {
+        width: 195px;
+    }
+    .header_nav_button {
+        height: 43px;
+        width: 43px;
+        font-size: 16px;
+    }
+    .main_slider_title_item {
+        font-size: 1.5rem;
+        letter-spacing: 4px;
+    }
+    .main_about_content_title {
+        font-size: 24px;
+    }
+    .main_about_content_body-text {
+        font-size: 14px;
+    }
+    .relationship_line {
+        top: -18.75em;
+        font-size: 0.6em;
+    }
+    .section_title {
+        font-size: calc(48 * 1em / 16);
+    }
+    .whatwedo_title {
+        --title-top: -280 * 0.6;
+        margin-bottom: calc(var(--title-top) * 1em / 48);
+        top: calc(var(--title-top) * 1em / 48);
+    }
+}
+
+@media screen and (max-width: 320px) {
+    :root {
+        --fs: 85%;
+    }
+}

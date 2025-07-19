@@ -1,0 +1,200 @@
+:root {
+    --fs: 100%;
+    --primary-color: #3ca13c;
+    --secondary-color: #dfecff80;
+    --white-color: #fff;
+    --black-color: #000;
+    --font-family: YakuHanJP, "Noto Sans JP", sans-serif;
+    --font-family-second: 'BR Candor', 'Noto Sans JP', sans-serif;
+    --ease-inout-quint: cubic-bezier(0.860, 0.000, 0.070, 1.000);
+    --ease-out-quad: cubic-bezier(0.250,0.460,0.450,0.940);
+    --ease-inout-circ: cubic-bezier(0.785,0.135,0.150,0.860);
+    --ease-out-cubic: cubic-bezier(0.215,0.610,0.355,1.000);
+    --ease-out-quint: cubic-bezier(0.230,1.000,0.320,1.000);
+    --padding-left-right-session: 32px;
+    --padding-top-session: 165;
+    --padding-bottom-session: 700;
+    --padding-content: 40px;
+    --section-width: 1100;
+    --header-height: 98;
+    --header-ratio: 1;
+    --sp-ratio: 1;
+}
+
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-size: var(--fs);
+    line-height: 1;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    word-break: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+body{
+    font-family: var(--font-family);
+    line-height: 1;
+    color: var(--primary-color);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+a{
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.section_container {
+    padding: 0 var(--padding-content);
+}
+
+.section_content {
+    position: relative;
+    z-index: 1;
+}
+
+.section_title {
+    font-family: var(--font-family-second);
+    font-weight: 600;
+    font-size: calc(130 * 1em / 16);
+    margin: 0;
+}
+
+.section_desc {
+    letter-spacing: 0.08em;
+    line-height: 2;
+    margin-top: 1.375em;
+}
+
+.section_control_link {
+    --fs: 15;
+    --arrow-width: 52;
+    --arrow-height: 52;
+    --arrow-ml: 13;
+    --arrow-color: #fff;
+    --currentcolor: var(--primary-color);
+    align-items: center;
+    color: var(--currentcolor);
+    display: inline-flex;
+    font-size: calc(var(--fs) * 1em / 16);
+    overflow: inherit;
+}
+
+.section_control_text {
+    letter-spacing: 0.14em;
+}
+
+.section_control_text:after {
+    background-color: currentColor;
+    content: "";
+    display: block;
+    height: 1px;
+    margin-top: calc(7em / var(--fs));
+    width: 100%;
+}
+
+.section_control_img {
+    align-items: center;
+    background-color: currentColor;
+    border-radius: 50%;
+    display: flex;
+    height: calc(var(--arrow-height) * 1em / var(--fs));
+    justify-content: center;
+    margin-left: calc(var(--arrow-ml) * 1em / var(--fs));
+    position: relative;
+    width: calc(var(--arrow-width) * 1em / var(--fs));
+    z-index: 0;
+}
+
+.section_control_img_svg {
+    fill: var(--arrow-color);
+    width: calc(18 / var(--arrow-width) * 100%);
+}
+
+.section_control_link:hover .section_control_text:after {
+    animation: lineanim .5s var(--ease-out-quad);
+}
+
+.section_control_link:hover .section_control_img_svg {
+    animation: arrowanim .5s var(--ease-inout-circ);
+}
+
+.u-section {
+    margin: 0 auto;
+    max-width: calc(var(--section-width) / 1366 * 100vw);
+    text-align: left;
+    width: 90%;
+}
+
+@keyframes ripples {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.6);
+    }
+}
+
+@keyframes lineanim {
+    0% {
+        transform: scale(1);
+        transform-origin: top right;
+    }
+    50% {
+        transform: scaleX(0);
+        transform-origin: top right;
+    }
+    51% {
+        transform: scaleX(0);
+        transform-origin: top left;
+    }
+    100% {
+        transform: scale(1);
+        transform-origin: top left;
+    }
+}
+
+@keyframes arrowanim {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+        transform: translate3d(50%, 0, 0);
+    }
+    55% {
+        opacity: 0;
+        transform: translate3d(-50%, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
