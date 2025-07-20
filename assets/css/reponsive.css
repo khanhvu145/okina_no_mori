@@ -1,6 +1,10 @@
 @media screen and (min-width: 1921px) {
-    .relationship_line {
-        font-size: .83333vw;
+    .relationship_line, .whatwedo_line {
+        font-size: 0.83333vw;
+    }
+    .main_whatwedo {
+        margin-top: calc(var(--padding-bottom-session) / 1920 * 100vw * -1);
+        padding: calc((var(--padding-bottom-session) - 1) / 1920 * 100vw) 0;
     }
 }
 

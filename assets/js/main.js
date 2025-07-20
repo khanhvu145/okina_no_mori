@@ -127,8 +127,14 @@ function createStripe({ color, direction, imgUrl }) {
                 <svg role="img" viewBox="0 0 50 100">
                     <use href="#logo_ki"></use>
                 </svg>
+                <svg role="img" viewBox="0 0 50 100">
+                    <use href="#logo_ki"></use>
+                </svg>
             </div>
             <div class="main_slider_logo_sub_2 main_slider_logo_sub_2_2">
+                <svg role="img" viewBox="0 0 50 100">
+                    <use href="#logo_ki"></use>
+                </svg>
                 <svg role="img" viewBox="0 0 50 100">
                     <use href="#logo_ki"></use>
                 </svg>
@@ -143,6 +149,9 @@ function createStripe({ color, direction, imgUrl }) {
                 <svg role="img" viewBox="0 0 50 100">
                     <use href="#logo_ki"></use>
                 </svg>
+                <svg role="img" viewBox="0 0 50 100">
+                    <use href="#logo_ki"></use>
+                </svg>
             </div>
         `;
         logoDiv.style.top = "-16vh";
@@ -150,7 +159,7 @@ function createStripe({ color, direction, imgUrl }) {
         logoDiv.style.transform = "translateX(-50%)";
         logoDiv.style.width = "100%";
     } else if(direction === "top-right-to-bottom-left") {
-        stripe.style.top = "-100vw";
+        stripe.style.top = window.innerWidth > 640 ? "-100vw" : "-50vw";
         stripe.style.left = "95%";
         stripe.style.transform = "rotate(25deg)";
         stripe.style.width = minSize;
@@ -159,8 +168,12 @@ function createStripe({ color, direction, imgUrl }) {
         imgEl.style.transform = "translateX(-50%) scale(0)";
 
         var html = `<div class="main_slider_logo_sub_4">`;
-        for (let i = 0; i < 30; i++) {
-            html += '<div><svg role="img" viewBox="0 0 40 49"><use href="#logo_no"></use></svg></div>';
+        for (let i = 0; i < 20; i++) {
+            html += `
+                <div>
+                    <svg role="img" viewBox="0 0 40 49"><use href="#logo_no"></use></svg>
+                </div>
+            `;
         }
         html += "</div>";
         logoDiv.innerHTML = html;
@@ -248,8 +261,8 @@ function animateStripe(stripe, stripeSub, imgEl, logoDiv, direction, onComplete)
             .to(imgEl, { scale: 1, duration: 0.8, ease: "power2.out" }, "<")
     } else if (direction === "top-right-to-bottom-left") {
         tl
-            .to(stripe, { height: "300vw", duration: duration, ease: "power2.out" })
-            .to(stripe, { width: "300vw", left: "0", duration: duration, ease: "power2.in" })
+            .to(stripe, { height: window.innerWidth > 640 ? "300vw" : "400vw", duration: duration, ease: "power2.out" })
+            .to(stripe, { width: window.innerWidth > 640 ? "300vw" : "400vw", left: "0", duration: duration, ease: "power2.in" })
             .to(".main_slider_logo_sub_4 svg", { opacity: 1, transform: "rotate(0)", duration: 0.3, ease: "power2.out" })
             .to(imgEl, { opacity: 1, duration: 1.2, ease: "power2.out" }, "-=0.2")
             .to(imgEl, { scale: 1, duration: 0.8, ease: "power2.out" }, "<")
@@ -479,65 +492,76 @@ function handleRelationshipContent() {
         masterTimeline.add(charTimeline, i * 0.05);
     });
 
-    ScrollTrigger.create({
-        trigger: "#main_relationship",
-        start: "top 55%",
-        onEnter: () => {
-            document.querySelector(".relationship_line").classList.add("is-active");
-        },
-        onLeaveBack: () => {
-            document.querySelector(".relationship_line").classList.remove("is-active");
+    gsap.from(".relationship_desc", {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".relationship_desc",
+            start: `top 90%`,
+            toggleActions: "play none none reset"
         }
     });
 
-    ScrollTrigger.create({
-        trigger: ".relationship_desc",
-        start: `top 90%`,
-        onEnter: () => {
-            gsap.fromTo(".relationship_desc", 
-                { y: 50, opacity: 0 }, 
-                { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }
-            );
-        },
-        onLeaveBack: () => {
-            gsap.set(".relationship_desc", { y: 50, opacity: 0 });
+    gsap.from(".relationship_swiper_container", {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".relationship_swiper_container",
+            start: `top 90%`,
+            toggleActions: "play none none reset"
         }
     });
 
-    ScrollTrigger.create({
-        trigger: ".relationship_swiper_container",
-        start: `top 90%`,
-        onEnter: () => {
-            gsap.fromTo(".relationship_swiper_container", 
-                { y: 50, opacity: 0 }, 
-                { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }
-            );
-        },
-        onLeaveBack: () => {
-            gsap.set(".relationship_swiper_container", { y: 50, opacity: 0 });
+    gsap.from(".relationship_control_link", {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".relationship_control_link",
+            start: `top 90%`,
+            toggleActions: "play none none reset"
+        }
+    });
+
+    CustomEase.create("easeForWhatWeDoContent", "0.215,0.610,0.355,1.000"); 
+    gsap.from(".relationship_line", {
+        scaleX: 0,
+        duration: 1.5,
+        ease: "easeForWhatWeDoContent",
+        scrollTrigger: {
+            trigger: "#main_relationship",
+            start: `top 55%`,
+            toggleActions: "play none none reset"
         }
     });
 }
 
 function handleWhatWeDoContent() {
     CustomEase.create("easeForWhatWeDoContent", "0.215,0.610,0.355,1.000"); 
-    ScrollTrigger.create({
-        trigger: "#main_whatwedo",
-        start: "top 60%",
-        onEnter: () => {
-            gsap.fromTo(".whatwedo_line",
-                { rotate: "20deg" },
-                { rotate: "20deg", duration: 0.01, ease: "easeForWhatWeDoContent" }
-            );
-            gsap.fromTo(".whatwedo_line", 
-                { scaleX: 0 },
-                { scaleX: 1, duration: 1.49, ease: "easeForWhatWeDoContent" }
-            );
-            document.querySelector(".main_whatwedo").classList.add("is-active");
-        },
-        onLeaveBack: () => {
-            gsap.to(".whatwedo_line", { scaleX: 0, rotate: "20deg", duration: 1.5, ease: "easeForWhatWeDoContent" });
-            document.querySelector(".main_whatwedo").classList.remove("is-active");
+    gsap.from(".whatwedo_line", {
+        scaleX: 0,
+        duration: 1,
+        ease: "easeForWhatWeDoContent",
+        scrollTrigger: {
+            trigger: "#main_whatwedo",
+            start: `top 60%`,
+            toggleActions: "play none none reset"
+        }
+    });
+
+    gsap.from(".main_whatwedo_inner_bg", {
+        scaleX: 0,
+        duration: 0.5,
+        ease: "power1.inOut",
+        scrollTrigger: {
+            trigger: "#main_whatwedo",
+            start: `top 60%`,
+            toggleActions: "play none none reset"
         }
     });
 
@@ -561,38 +585,101 @@ function handleWhatWeDoContent() {
         });
         colors.forEach((color, index) => {
             charTimeline.to(char, {
-            color: color,
-            duration: 0.2
+                color: color,
+                duration: 0.2
             }, `<+=0.1`);
         });
         masterTimeline.add(charTimeline, i * 0.05);
     });
 
-    // ScrollTrigger.create({
-    //     trigger: ".whatwedo_block",
-    //     start: "top 80%",
-    //     onEnter: () => {
-    //         gsap.fromTo(".whatwedo_block_section_title",
-    //             { opacity: "0", transform: "translateY(-0.5em)" },
-    //             { opacity: "1", transform: "translateY(0)", duration: 0.01, ease: "power2.out" }
-    //         );
-    //     },
-    //     onLeaveBack: () => {
+    masterTimeline.from(".whatwedo_desc", {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+    }, "-=1");
 
-    //     }
-    // });
-    // gsap.utils.toArray(".whatwedo_block_section_title").forEach((el, i) => {
-    //     gsap.from(el, {
-    //         opacity: 0,
-    //         y: 50,
-    //         duration: 0.8,
-    //         ease: "power2.out",
-    //         scrollTrigger: {
-    //             trigger: el,
-    //             start: "top 80%",
-    //             toggleActions: "play none none reverse"
-    //         }
-    //     });
-    // });
+    let steps = 0;
+    let lastIndex = -1;
+    const sections = gsap.utils.toArray(".whatwedo_block_section");
+    sections.forEach((section, index) => {
+        section.classList.remove("is-active");
+        steps += (index + 1);
+    });
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".whatwedo_block",
+            start: "top top",
+            end: () => `+=${steps * 5 * 100}vh`, 
+            scrub: true,
+            pin: true,
+            anticipatePin: 2,
+            onUpdate: (self) => {
+                const currentIndex = Math.min(Math.floor(self.progress * sections.length), sections.length - 1);
+                if (currentIndex !== lastIndex) {
+                    sections.forEach((s, i) => {
+                        s.classList.toggle("is-active", i === currentIndex);
+                    });
+                    lastIndex = currentIndex;
+                }
+            },
+        }
+    });
+    gsap.utils.toArray(".whatwedo_block_section").forEach((el, i) => {
+        tl.to(el, { duration: 1 * (sections.length - i + 1) * 5 });
+    });
 
+    let steps2 = 0;
+    const pages = gsap.utils.toArray(".whatwedo_pagenation_item");
+    pages.forEach((page, index) => {
+        page.classList.remove("is-active");
+        steps2 += (index + 1);
+    });
+    const tl2 = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".whatwedo_pagenation",
+            start: "top top",
+            end: () => `+=${steps2 * 5 * 100}vh`, 
+            scrub: true,
+            pin: true,
+            anticipatePin: 1,
+            onUpdate: (self) => {
+                const currentIndex = Math.min(Math.floor(self.progress * pages.length), pages.length - 1);
+                pages.forEach((s, i) => {
+                    s.classList.toggle("is-active", i === currentIndex);
+                });
+            },
+        }
+    });
+
+    gsap.utils.toArray(".whatwedo_pagenation_item").forEach((el, i) => {
+        tl2.to(el, { duration: 1 * (pages.length - i + 1) * 5 });
+    });
+
+    let steps3 = 0;
+    const imgs = gsap.utils.toArray(".whatwedo_img_item");
+    imgs.forEach((img, index) => {
+        img.classList.remove("is-active");
+        steps3 += (index + 1);
+    });
+    const tl3 = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".whatwedo_img",
+            start: "top top",
+            end: () => `+=${steps3 * 5 * 100}vh`, 
+            scrub: true,
+            pin: true,
+            anticipatePin: 1,
+            onUpdate: (self) => {
+                const currentIndex = Math.min(Math.floor(self.progress * imgs.length), imgs.length - 1);
+                imgs.forEach((s, i) => {
+                    s.classList.toggle("is-active", i === currentIndex);
+                });
+            },
+        }
+    });
+
+    gsap.utils.toArray(".whatwedo_pagenation_item").forEach((el, i) => {
+        tl3.to(el, { duration: 1 * (imgs.length - i + 1) * 5 });
+    });
 }
